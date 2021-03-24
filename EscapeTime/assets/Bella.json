@@ -1,0 +1,240 @@
+{
+  "frames": [
+    {
+      "filename": "Back1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Back2",
+      "frame": {
+        "x": 0,
+        "y": 125,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Back3",
+      "frame": {
+        "x": 0,
+        "y": 250,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Front1",
+      "frame": {
+        "x": 0,
+        "y": 375,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Front2",
+      "frame": {
+        "x": 0,
+        "y": 500,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Front3",
+      "frame": {
+        "x": 0,
+        "y": 625,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Right1",
+      "frame": {
+        "x": 0,
+        "y": 750,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Right2",
+      "frame": {
+        "x": 0,
+        "y": 875,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "Right3",
+      "frame": {
+        "x": 0,
+        "y": 1000,
+        "w": 100,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "Bella.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 100,
+      "h": 1125
+    },
+    "scale": 1
+  }
+}

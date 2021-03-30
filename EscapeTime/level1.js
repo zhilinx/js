@@ -6,7 +6,7 @@ class level1 extends Phaser.Scene {
         super({ key: 'level1' });
         // Put global variable here
         this.coin = 0;
-        this.coinCount = 3;
+        // this.coinCount = 8;
     }
 
 preload() {
@@ -55,7 +55,8 @@ create() {
     this.startPoint = map.findObject("objectLayer", obj => obj.name === "startPoint");
     this.endPoint = map.findObject("objectLayer", obj => obj.name === "endPoint");
 
-    
+    // Place an image manually on the endPoint
+    this.add.image(this.endPoint.x, this.endPoint.y, 'exit2').setOrigin(0, 0);
 
     console.log('startPoint ', this.startPoint.x, this.startPoint.y);
     console.log('endPoint ', this.endPoint.x, this.endPoint.y);
@@ -227,19 +228,19 @@ update() {
         //console.log('idle');
     }
   
-    // Check for the vegeCount
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coinCount > 3 ) {
-        console.log('Collected 3 coin, jump to level 2');
-        this.scene.stop("level1");
-        this.scene.start("level2");
-    }
-
-    // // Check for reaching endPoint object
-    // if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
-    //     console.log('Reached endPoint, loading next level');
+    // // Check for the vegeCount
+    // if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coinCount > 3 ) {
+    //     console.log('Collected 3 coin, jump to level 2');
     //     this.scene.stop("level1");
     //     this.scene.start("level2");
     // }
+
+    // Check for reaching endPoint object
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
+        console.log('Reached endPoint, loading next level');
+        this.scene.stop("level1");
+        this.scene.start("level2");
+    }
 
 }
 }

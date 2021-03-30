@@ -18,8 +18,9 @@ preload() {
     this.load.spritesheet('objects', 'assets/goldCoin.png', {frameWidth: 64, frameHeight: 64});
 
     this.load.atlas('player', 'assets/Bella.png', 'assets/Bella.json');
-    this.load.image('pet2', 'assets/Boss.png');
+    this.load.image('pet2', 'assets/boss2.png');
     this.load.image('coin2', 'assets/Coin.png');
+    this.load.image('exit2', 'assets/Exit.png');
 
 
     
@@ -59,7 +60,7 @@ create() {
     this.endPoint = map3.findObject("Object Layer 1", obj => obj.name === "endPoint");
 
     // Place an image manually on the endPoint
-    // this.add.image(this.endPoint.x, this.endPoint.y, 'coin').setOrigin(0, 0);
+    this.add.image(this.endPoint.x, this.endPoint.y, 'exit2').setOrigin(0, 0);
 
     console.log('startPoint', this.startPoint.x, this.startPoint.y);
     console.log('endPoint ', this.endPoint.x, this.endPoint.y);

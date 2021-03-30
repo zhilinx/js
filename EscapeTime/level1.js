@@ -5,7 +5,8 @@ class level1 extends Phaser.Scene {
     {
         super({ key: 'level1' });
         // Put global variable here
-        this.coin = 0
+        this.coin = 0;
+        this.coinCount = 3;
     }
 
 preload() {
@@ -20,7 +21,7 @@ preload() {
     this.load.atlas('player', 'assets/Bella.png', 'assets/Bella.json');
 
     this.load.image('coin2', 'assets/Coin.png');
-    this.load.image('pet2', 'assets/Pet.png');
+    // this.load.image('pet2', 'assets/Pet.png');
     this.load.image('exit2', 'assets/Exit.png');
 
 }
@@ -68,22 +69,22 @@ create() {
    this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, this.backgroundLayer);
 
-       // Add random pet
-     this.pet2 = this.physics.add.group({
-        key: 'pet2',
-        repeat: 5,
-        setXY: { x: 400, y: 0, stepX: Phaser.Math.Between(300, 300) }
-    });
+    //    // Add random pet
+    //  this.pet2 = this.physics.add.group({
+    //     key: 'pet2',
+    //     repeat: 5,
+    //     setXY: { x: 400, y: 0, stepX: Phaser.Math.Between(300, 300) }
+    // });
 
     this.timedEvent = this.time.addEvent({ delay: 2000, callback: this.moveLeft, callbackScope: this, loop: true });
     this.timedEvent2 = this.time.addEvent({ delay: 4000, callback: this.moveRight, callbackScope: this, loop: true });
        
 
-    // Collide platform with pet
-    this.physics.add.collider(this.collideLayer, this.pet2);
-    this.physics.add.collider(this.backgroundLayer, this.pet2);
+    // // Collide platform with pet
+    // this.physics.add.collider(this.collideLayer, this.pet2);
+    // this.physics.add.collider(this.backgroundLayer, this.pet2);
 
-    this.physics.add.overlap(this.player, this.pet2, this.hitPet, null, this );
+    // this.physics.add.overlap(this.player, this.pet2, this.hitPet, null, this );
 
     //add text
             this.add.text(30,550, 'Level 1', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
@@ -167,6 +168,8 @@ create() {
   // set background color, so the sky is not black    
   this.cameras.main.setBackgroundColor('#ccccff');
 
+ //add text
+ this.add.text(30,550, 'Level 1 - 3 Coins', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
 
 }
 
@@ -174,20 +177,24 @@ collectcoin(player,tiles) {
     this.coin++;
     console.log('Collect Coin', this.coin, tiles.x, tiles.y);
     this.coinLayer.removeTileAt(tiles.x, tiles.y);
+    this.coinCount += 1; 
+   
+    console.log(this.coinCount);
+    // this.coinText.setText(this.coinCount);
     return false;
 }
 
-hitPet(player,pet) {
-    //bombs.disableBody(true, true);
-    console.log('Hit pet, restart game');
-    this.cameras.main.shake(100);
-    // delay 1 sec
-    this.time.delayedCall(1000,function() {
+// hitPet(player,pet) {
+//     //bombs.disableBody(true, true);
+//     console.log('Hit pet, restart game');
+//     this.cameras.main.shake(100);
+//     // delay 1 sec
+//     this.time.delayedCall(1000,function() {
 
-        this.scene.restart();
-//        this.scene.start("gameoverScene");
-    },[], this);
-}
+//         this.scene.restart();
+// //        this.scene.start("gameoverScene");
+//     },[], this);
+// }
 
 
 
@@ -220,12 +227,19 @@ update() {
         //console.log('idle');
     }
   
-    // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
-        console.log('Reached endPoint, loading next level');
+    // Check for the vegeCount
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coinCount > 3 ) {
+        console.log('Collected 3 coin, jump to level 2');
         this.scene.stop("level1");
         this.scene.start("level2");
     }
+
+    // // Check for reaching endPoint object
+    // if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
+    //     console.log('Reached endPoint, loading next level');
+    //     this.scene.stop("level1");
+    //     this.scene.start("level2");
+    // }
 
 }
 }

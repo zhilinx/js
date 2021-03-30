@@ -13,7 +13,7 @@ class storyScene extends Phaser.Scene {
 
         this.add.image(0, 0, 'story').setOrigin(0, 0);
 
-        this.add.text(0, 580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
+        // this.add.text(0, 580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is storyScene");
 

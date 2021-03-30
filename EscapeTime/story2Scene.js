@@ -15,7 +15,7 @@ class story2Scene extends Phaser.Scene {
 
         this.add.image(0, 0, 'story2').setOrigin(0, 0);
 
-        this.add.text(50, 550, ' ', { font: '24px Courier', fill: '#000000' });
+        // this.add.text(50, 550, ' ', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is story2Scene");
 

@@ -21,7 +21,7 @@ class main2Scene extends Phaser.Scene {
         // graphics.fillRect(100, 100, 100, 100);
         // this.add.text(120, 110, 'A', { font: '96px Courier', fill: '#000000' });
 
-        this.add.text(0, 580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
+        // this.add.text(0, 580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is main2Scene");
 

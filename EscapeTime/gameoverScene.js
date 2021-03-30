@@ -6,7 +6,7 @@ class gameoverScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('gameover','assets/levelup.png');
+        this.load.image('gameover','assets/gameoverScene.png');
 
     }
 
@@ -14,7 +14,7 @@ class gameoverScene extends Phaser.Scene {
 
         this.add.image(0, 0, 'gameover').setOrigin(0, 0);
         
-        this.add.text(0,580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
+        // this.add.text(0,580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is gameoverScene");
 
@@ -26,7 +26,7 @@ class gameoverScene extends Phaser.Scene {
         spaceDown.on('down', function(){
         console.log("Spacebar pressed, reply game");
         this.scene.stop("gameoverScene");
-        this.scene.start("level1");
+        this.scene.start("mainScene");
         }, this );
 
         aDown.on('down', function(){

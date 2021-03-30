@@ -169,7 +169,7 @@ class level2 extends Phaser.Scene {
       this.cameras.main.setBackgroundColor('#ccccff');
     
        //add text
-       this.add.text(30,550, 'Level 2', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
+       this.add.text(30,550, 'Level 2 - 6 Coins', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
     
     }
     
@@ -188,7 +188,7 @@ class level2 extends Phaser.Scene {
         this.time.delayedCall(1000,function() {
     
             this.scene.restart();
-    //        this.scene.start("gameoverScene");
+           this.scene.start("gameoverScene");
         },[], this);
     }
     

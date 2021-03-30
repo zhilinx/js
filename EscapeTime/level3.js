@@ -11,14 +11,14 @@ class level3 extends Phaser.Scene {
 preload() {
 
     // map made with Tiled in JSON format
-    this.load.tilemapTiledJSON('map', 'assets/Level3.json');
+    this.load.tilemapTiledJSON('map3', 'assets/Level3.json');
     
     this.load.spritesheet('tiles', 'assets/TileMap1.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('tiles2', 'assets/TileMap2.png', {frameWidth: 64, frameHeight: 64});
     this.load.spritesheet('objects', 'assets/goldCoin.png', {frameWidth: 64, frameHeight: 64});
 
     this.load.atlas('player', 'assets/Bella.png', 'assets/Bella.json');
-
+    this.load.image('pet2', 'assets/Boss.png');
     this.load.image('coin2', 'assets/Coin.png');
 
 
@@ -30,18 +30,16 @@ preload() {
 
 create() {
 
-    var map = this.make.tilemap({key: 'map'});
-    var Tiles1 = map.addTilesetImage('TileMap1', 'tiles1');
-    var Tiles2 = map.addTilesetImage('TileMap2', 'tiles2');
-    var Coin = map.addTilesetImage('Coin', 'coin2');
+    var map3 = this.make.tilemap({key: 'map3'});
+    var Tiles1 = map3.addTilesetImage('TileMap1', 'tiles1');
+    var Tiles2 = map3.addTilesetImage('TileMap2', 'tiles2');
+    var Coin = map3.addTilesetImage('Coin', 'coin2');
 
 
     // create the ground layer
-    this.backgroundLayer = map.createDynamicLayer('backgroundLayer', Tiles1, 0, 0);
-    this.backgroundLayer = map.createDynamicLayer('backgroundLayer', Tiles2, 0, 0)
-    this.collideLayer = map.createDynamicLayer('collideLayer', Tiles1, 0, 0);
-    this.collideLayer = map.createDynamicLayer('collideLayer', Tiles2, 0, 0);
-    this.coinLayer = map.createDynamicLayer('coinLayer', Coin, 0, 0);
+    this.backgroundLayer = map3.createDynamicLayer('backgroundLayer', Tiles2, 0, 0);
+    this.collideLayer = map3.createDynamicLayer('collideLayer', Tiles2, 0, 0);
+    this.coinLayer = map3.createDynamicLayer('coinLayer', Coin, 0, 0);
 
 
     this.backgroundLayer.setCollisionByProperty({block: true});
@@ -57,13 +55,13 @@ create() {
    
 
     // Set starting and ending position using object names in tiles
-    this.startPoint = map.findObject("objectLayer", obj => obj.name === "startPoint");
-    this.endPoint = map.findObject("objectLayer", obj => obj.name === "endPoint");
+    this.startPoint = map3.findObject("Object Layer 1", obj => obj.name === "startPoint");
+    this.endPoint = map3.findObject("Object Layer 1", obj => obj.name === "endPoint");
 
     // Place an image manually on the endPoint
     // this.add.image(this.endPoint.x, this.endPoint.y, 'coin').setOrigin(0, 0);
 
-    console.log('startPoint ', this.startPoint.x, this.startPoint.y);
+    console.log('startPoint', this.startPoint.x, this.startPoint.y);
     console.log('endPoint ', this.endPoint.x, this.endPoint.y);
 
    // create the player sprite
@@ -71,6 +69,13 @@ create() {
 
    this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, this.backgroundLayer);
+
+        //    // Add random pet
+     this.pet2 = this.physics.add.group({
+        key: 'pet2',
+        repeat: 5,
+        setXY: { x: 400, y: 0, stepX: Phaser.Math.Between(300, 300) }
+    });
 
    // small fix to our player images, we resize the physics body object slightly
    this.player.body.setSize(this.player.width/2, this.player.height/2);  
@@ -123,7 +128,7 @@ create() {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     // set bounds so the camera won't go outside the game world
-    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.setBounds(0, 0, map3.widthInPixels, map3.heightInPixels);
     // make the camera follow the player
     this.cameras.main.startFollow(this.player);
 
@@ -133,20 +138,29 @@ create() {
     this.physics.world.bounds.height = this.collideLayer.height;
 
     //   collect coin 
-    this.coinLayer.setTileIndexCallback(25, this.collectcoin, this);
+    this.coinLayer.setTileIndexCallback(49, this.collectcoin, this);
     this.physics.add.collider(this.coinLayer, this.player);
     // this.physics.add.overlap(this.coinLayer, this.player,this.collectcoin,this);
     // this.physics.add.overlap(this.player, this.coinLayer,this.collectcoin, null, this );
 
 
   // set bounds so the camera won't go outside the game world
-  this.cameras.main.setBounds(0, 0,map.widthInPixels, map.heightInPixels);
+  this.cameras.main.setBounds(0, 0,map3.widthInPixels, map3.heightInPixels);
   // make the camera follow the this.player
   this.cameras.main.startFollow(this.player);
 
   // set background color, so the sky is not black    
   this.cameras.main.setBackgroundColor('#ccccff');
 
+  
+    // // Collide platform with pet
+    this.physics.add.collider(this.collideLayer, this.pet2);
+    this.physics.add.collider(this.backgroundLayer, this.pet2);
+
+    this.physics.add.overlap(this.player, this.pet2, this.hitPet, null, this );
+
+//add text
+this.add.text(30,550, 'Level 3 - 8 Coins', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
 
 }
 
@@ -157,7 +171,17 @@ collectcoin(player,tiles) {
     return false;
 }
 
+// hitPet(player,pet) {
+//     //bombs.disableBody(true, true);
+//     console.log('Hit pet, restart game');
+//     this.cameras.main.shake(100);
+//     // delay 1 sec
+//     this.time.delayedCall(1000,function() {
 
+//         this.scene.restart();
+//        this.scene.start("gameoverScene");
+//     },[], this);
+// }
 
 update(time, delta) {
 
@@ -188,6 +212,11 @@ update(time, delta) {
         //console.log('idle');
     }
 
-
+// Check for reaching endPoint object
+if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
+    console.log('Reached endPoint, loading next level');
+    this.scene.stop("level3");
+    this.scene.start("winScene");
+}
 }
 }

@@ -51,7 +51,7 @@ class level2 extends Phaser.Scene {
         console.log( this.collideLayer.width, this.collideLayer.height );
     
         this.collectSnd = this.sound.add('collect');
-        this.hitSnd = this.sound.add('hit');
+        this.hitSnd = this.sound.add('hit',{volume: 0.1});
         this.bgmusicSnd = this.sound.add('bgmusic', {volume: 0.1});
         
 
@@ -228,13 +228,15 @@ class level2 extends Phaser.Scene {
 
         this.cameras.main.shake(50);
         // delay 1 sec
-        this.time.delayedCall(1000,function() {
+        this.time.delayedCall(100,function() {
+        
     
-           this.scene.restart();
-        //    this.scene.start("gameoverScene");
+        //    this.scene.restart();
+           this.scene.start("gameoverScene");
            
         },[], this);
     }
+
     
     
     update(time, delta) {

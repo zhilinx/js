@@ -218,7 +218,7 @@ class level3 extends Phaser.Scene {
       this.cameras.main.setBackgroundColor('#ccccff');
     
        //add text
-       this.add.text(30,550, 'Level 3 - 6 Coins (Do not hit the boss & pets!)', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
+       this.add.text(30,550, 'Level 3 - 8 Coins (Do not hit the boss & pets!)', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
     
     }
     
@@ -238,16 +238,17 @@ class level3 extends Phaser.Scene {
         //bombs.disableBody(true, true);
         console.log('Hit pet, restart game');
         this.hitSnd.play();
-           window.music1.stop();
-
-        this.cameras.main.shake(100);
-        // delay 1 sec
-        this.time.delayedCall(1000,function() {
-    
-            // this.scene.restart();
-           this.scene.start("gameoverScene");
+        window.music1.stop();  
         
 
+        this.cameras.main.shake(50);
+        // delay 1 sec
+        this.time.delayedCall(100,function() {
+        
+    
+        //    this.scene.restart();
+           this.scene.start("gameoverScene");
+           
         },[], this);
     }
     
@@ -256,14 +257,14 @@ hitNo(player,no) {
     //bombs.disableBody(true, true);
     console.log('Hit no, restart game');
     this.hitSnd.play();
-           window.music1.stop();
+    window.music1.stop();
 
-    this.cameras.main.shake(100);
+    this.cameras.main.shake(50);
     // delay 1 sec
-    this.time.delayedCall(1000,function() {
+    this.time.delayedCall(100,function() {
 
-        this.scene.restart();
-    //    this.scene.start("gameoverScene");
+        // this.scene.restart();
+       this.scene.start("gameoverScene");
     
 
     },[], this);
@@ -358,7 +359,7 @@ moveBoss2() {
         }
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 5 ) {
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 7 ) {
         console.log('Reached endPoint, loading next level');
         window.music1.stop();
         this.scene.stop("level3");

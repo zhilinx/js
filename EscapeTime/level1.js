@@ -6,7 +6,8 @@ class level1 extends Phaser.Scene {
         super({ key: 'level1' });
         // Put global variable here
         this.coin = 0;
-        // this.coinCount = 8;
+        this.coinCount = 0;
+
     }
 
 preload() {
@@ -24,6 +25,10 @@ preload() {
     // this.load.image('pet2', 'assets/Pet.png');
     this.load.image('exit2', 'assets/Exit.png');
 
+    this.load.audio('collect','assets/collectmoney.mp3');
+    this.load.audio('bgmusic','assets/bgm.mp3');
+    // this.load.audio('hit','assets/enemy.mp3');
+
 }
 
 create() {
@@ -31,6 +36,7 @@ create() {
     var map = this.make.tilemap({key: 'map'});
     var Tiles = map.addTilesetImage('TileMap', 'tiles');
     var Coin = map.addTilesetImage('Coin', 'coin2');
+  
 
 
     // create the ground layer
@@ -44,7 +50,14 @@ create() {
     
     console.log( this.collideLayer.width, this.collideLayer.height );
 
+    this.collectSnd = this.sound.add('collect');
+    // this.hitSnd = this.sound.add('hit');
+    this.bgmusicSnd = this.sound.add('bgmusic', {volume: 0.1});
+    
 
+    window.music1=this.bgmusicSnd;
+    window.music1.play();
+    window.music1.loop=true;
 
     // set the boundaries of our game world
     this.physics.world.bounds.width = this.backgroundLayer.width;
@@ -144,6 +157,18 @@ create() {
    
     this.cursors = this.input.keyboard.createCursorKeys();
 
+    // this text will show the score
+    this.coinText = this.add.text(700, 50, this.coinCount, {
+        fontSize: '30px',
+        fill: '#221C48'
+        });
+
+         // fix the text to the camera
+    this.coinText.setScrollFactor(0);
+    this.coinText.visible = true;
+
+    
+
     // set bounds so the camera won't go outside the game world
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     // make the camera follow the player
@@ -170,7 +195,7 @@ create() {
   this.cameras.main.setBackgroundColor('#ccccff');
 
  //add text
- this.add.text(30,550, 'Level 1 - 3 Coins', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
+ this.add.text(30,550, 'Level 1 - Collect 3 Coins', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
 
 }
 
@@ -179,9 +204,10 @@ collectcoin(player,tiles) {
     console.log('Collect Coin', this.coin, tiles.x, tiles.y);
     this.coinLayer.removeTileAt(tiles.x, tiles.y);
     this.coinCount += 1; 
-   
-    console.log(this.coinCount);
-    // this.coinText.setText(this.coinCount);
+    this.collectSnd.play();
+
+    // console.log(this.coinCount);
+    this.coinText.setText(this.coinCount);
     return false;
 }
 
@@ -236,8 +262,9 @@ update() {
     // }
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 2 ) {
         console.log('Reached endPoint, loading next level');
+        window.music1.stop();
         this.scene.stop("level1");
         this.scene.start("level2");
     }

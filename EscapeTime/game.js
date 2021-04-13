@@ -8,9 +8,9 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: {
-                y: 300
+                y: 0
             },
-            debug: true
+            debug: false
         }
     },
     //scene: [mainScene, main2Scene, storyScene, story2Scene, level1]

@@ -7,6 +7,7 @@ class winScene extends Phaser.Scene {
 
     preload() {
         this.load.image('win','assets/winScene.png');
+        this.load.audio('win','assets/win.mp3');
 
     }
 
@@ -18,6 +19,11 @@ class winScene extends Phaser.Scene {
 
         console.log("This is winScene");
 
+        this.bgmusicSnd = this.sound.add('win');
+    
+        this.bgmusicSnd = this.sound.add('win', {volume: 0.5});
+        this.bgmusicSnd.play();
+
         //this.input.once('pointerdown', function(){
         var spaceDown = this.input.keyboard.addKey('SPACE');
         var aDown = this.input.keyboard.addKey('A');
@@ -25,6 +31,7 @@ class winScene extends Phaser.Scene {
         
         spaceDown.on('down', function(){
         console.log("Spacebar pressed, reply game");
+        this.bgmusicSnd.stop();
         this.scene.stop("winScene");
         this.scene.start("mainScene");
         }, this );

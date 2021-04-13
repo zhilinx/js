@@ -70,17 +70,103 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":2450.21166936791,
-                 "y":471.161183144246
+                 "x":2450.21,
+                 "y":471.161
+                }, 
+                {
+                 "height":0,
+                 "id":7,
+                 "name":"Boss1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":594.788,
+                 "y":733.661
+                }, 
+                {
+                 "height":0,
+                 "id":8,
+                 "name":"Boss2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":870.014,
+                 "y":63.4761
+                }, 
+                {
+                 "height":0,
+                 "id":9,
+                 "name":"Boss3",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1634.22,
+                 "y":200.156
+                }, 
+                {
+                 "height":0,
+                 "id":10,
+                 "name":"Pet1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":300.716408754758,
+                 "y":234.593115606308
+                }, 
+                {
+                 "height":0,
+                 "id":12,
+                 "name":"Pet2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1377.38851315933,
+                 "y":1131.81986927678
+                }, 
+                {
+                 "height":0,
+                 "id":13,
+                 "name":"Pet3",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1774.34337993475,
+                 "y":1191.63498618815
+                }, 
+                {
+                 "height":0,
+                 "id":14,
+                 "name":"Pet4",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1314.85452729744,
+                 "y":38.8345511691137
                 }],
+         "offsetx":-12.5163,
+         "offsety":61.7636,
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":5,
- "nextobjectid":3,
+ "nextlayerid":7,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",
@@ -274,6 +360,29 @@
                  "properties":[
                         {
                          "name":"Coin",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
+         "tilewidth":64
+        }, 
+        {
+         "columns":1,
+         "firstgid":50,
+         "image":"no.png",
+         "imageheight":64,
+         "imagewidth":64,
+         "margin":0,
+         "name":"no",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":64,
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"no",
                          "type":"bool",
                          "value":true
                         }]

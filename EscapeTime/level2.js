@@ -6,6 +6,7 @@ class level2 extends Phaser.Scene {
         super({ key: 'level2' });
         // Put global variable here
         this.coin = 0;
+        this.coinCount = 0;
     }
 
     preload() {
@@ -23,11 +24,10 @@ class level2 extends Phaser.Scene {
         this.load.image('coin2', 'assets/Coin.png');
         this.load.image('exit2', 'assets/Exit.png');
         this.load.image('pet2', 'assets/Pet.png');
-    
-    
-        
-    
-    
+
+        this.load.audio('collect','assets/collectmoney.mp3');
+        this.load.audio('bgmusic','assets/bgm.mp3');
+        this.load.audio('hit','assets/explosion.mp3');
     
     }
     
@@ -50,6 +50,14 @@ class level2 extends Phaser.Scene {
         
         console.log( this.collideLayer.width, this.collideLayer.height );
     
+        this.collectSnd = this.sound.add('collect');
+        this.hitSnd = this.sound.add('hit');
+        this.bgmusicSnd = this.sound.add('bgmusic', {volume: 0.1});
+        
+
+        window.music1=this.bgmusicSnd;
+        window.music1.play();
+        window.music1.loop=true;
     
     
         // set the boundaries of our game world
@@ -58,11 +66,18 @@ class level2 extends Phaser.Scene {
        
     
         // Set starting and ending position using object names in tiles
-        this.startPoint = map2.findObject("objectLayer", obj => obj.name === "startPoint");
+        this.startPoint2 = map2.findObject("objectLayer", obj => obj.name === "startPoint2");
         this.endPoint = map2.findObject("objectLayer", obj => obj.name === "endPoint");
+
+        var pet1 = map2.findObject("objectLayer", obj => obj.name === "Pet1");
+        var pet2 = map2.findObject("objectLayer", obj => obj.name === "Pet2");
+        var pet3 = map2.findObject("objectLayer", obj => obj.name === "Pet3");
+        var pet4 = map2.findObject("objectLayer", obj => obj.name === "Pet4");
+        var pet5 = map2.findObject("objectLayer", obj => obj.name === "Pet5");
+        var pet6 = map2.findObject("objectLayer", obj => obj.name === "Pet6");
     
     
-        console.log('startPoint', this.startPoint.x, this.startPoint.y);
+        console.log('startPoint2', this.startPoint2.x, this.startPoint2.y);
         console.log('endPoint', this.endPoint.x, this.endPoint.y);
 
         // Place an image manually on the endPoint
@@ -70,18 +85,12 @@ class level2 extends Phaser.Scene {
 
     
        // create the player sprite
-       this.player = this.physics.add.sprite(this.startPoint.x, this.startPoint.y, 'player').setScale(1);
+       this.player = this.physics.add.sprite(this.startPoint2.x, this.startPoint2.y, 'player').setScale(1);
     
        this.player.setCollideWorldBounds(true);
             this.physics.add.collider(this.player, this.backgroundLayer);
     
-    // Add random pet
-     this.pet2 = this.physics.add.group({
-        key: 'pet2',
-        repeat: 5,
-        setXY: { x: 400, y: 0, stepX: Phaser.Math.Between(300, 300) }
-    });
-
+    
     this.timedEvent = this.time.addEvent({ delay: 2000, callback: this.moveLeft, callbackScope: this, loop: true });
     this.timedEvent2 = this.time.addEvent({ delay: 4000, callback: this.moveRight, callbackScope: this, loop: true });
        
@@ -131,6 +140,13 @@ class level2 extends Phaser.Scene {
                 });
     
     
+    this.pet1 = this.physics.add.sprite(pet1.x, pet1.y, 'pet2');
+    this.pet2 = this.physics.add.sprite(pet2.x, pet2.y, 'pet2');
+    this.pet3 = this.physics.add.sprite(pet3.x, pet3.y, 'pet2');
+    this.pet4 = this.physics.add.sprite(pet4.x, pet4.y, 'pet2');
+    this.pet5 = this.physics.add.sprite(pet5.x, pet5.y, 'pet2');
+    this.pet6 = this.physics.add.sprite(pet6.x, pet6.y, 'pet2');
+
         // the this.player will collide with this layer
         this.collideLayer.setCollisionByProperty({Collide:true})
         
@@ -142,6 +158,16 @@ class level2 extends Phaser.Scene {
     
        
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        // this text will show the score
+    this.coinText = this.add.text(700, 50, this.coinCount, {
+        fontSize: '30px',
+        fill: '#221C48'
+        });
+
+         // fix the text to the camera
+    this.coinText.setScrollFactor(0);
+    this.coinText.visible = true;
     
         // set bounds so the camera won't go outside the game world
         this.cameras.main.setBounds(0, 0, map2.widthInPixels, map2.heightInPixels);
@@ -158,6 +184,15 @@ class level2 extends Phaser.Scene {
         this.physics.add.collider(this.coinLayer, this.player);
         // this.physics.add.overlap(this.coinLayer, this.player,this.collectcoin,this);
         // this.physics.add.overlap(this.player, this.coinLayer,this.collectcoin, null, this );
+
+        this.physics.add.overlap(this.player, this.pet1, this.hitPet, null, this );
+        this.physics.add.overlap(this.player, this.pet2, this.hitPet, null, this );
+        this.physics.add.overlap(this.player, this.pet3, this.hitPet, null, this );
+        this.physics.add.overlap(this.player, this.pet4, this.hitPet, null, this );
+        this.physics.add.overlap(this.player, this.pet5, this.hitPet, null, this );
+        this.physics.add.overlap(this.player, this.pet6, this.hitPet, null, this );
+
+       
     
     
       // set bounds so the camera won't go outside the game world
@@ -169,7 +204,7 @@ class level2 extends Phaser.Scene {
       this.cameras.main.setBackgroundColor('#ccccff');
     
        //add text
-       this.add.text(30,550, 'Level 2 - 6 Coins', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
+       this.add.text(30,550, 'Level 2 - 6 Coins (Do no hit the pets!)', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
     
     }
     
@@ -177,18 +212,27 @@ class level2 extends Phaser.Scene {
         this.coin++;
         console.log('Collect Coin', this.coin, tiles.x, tiles.y);
         this.coinLayer.removeTileAt(tiles.x, tiles.y);
+        this.coinCount += 1; 
+        this.collectSnd.play();
+        this.coinText.setText(this.coinCount);
         return false;
+    
     }
     
     hitPet(player,pet) {
         //bombs.disableBody(true, true);
         console.log('Hit pet, restart game');
-        this.cameras.main.shake(100);
+      this.hitSnd.play();
+        window.music1.stop();  
+        
+
+        this.cameras.main.shake(50);
         // delay 1 sec
         this.time.delayedCall(1000,function() {
     
-            this.scene.restart();
+           this.scene.restart();
            this.scene.start("gameoverScene");
+           
         },[], this);
     }
     
@@ -223,8 +267,9 @@ class level2 extends Phaser.Scene {
         }
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y ) {
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 5) {
         console.log('Reached endPoint, loading next level');
+        window.music1.stop();
         this.scene.stop("level2");
         this.scene.start("level3");
     }

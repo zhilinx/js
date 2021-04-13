@@ -8,7 +8,7 @@ class main2Scene extends Phaser.Scene {
 
     preload() {
         this.load.image('main2','assets/intropage.png');
-
+    
     }
 
     create () {
@@ -24,7 +24,6 @@ class main2Scene extends Phaser.Scene {
         // this.add.text(0, 580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is main2Scene");
-
         //this.input.once('pointerdown', function(){
         var spaceDown = this.input.keyboard.addKey('SPACE');
         

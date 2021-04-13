@@ -7,6 +7,7 @@ class storyScene extends Phaser.Scene {
 
     preload() {
         this.load.image('story','assets/instruction.png');
+
     }
 
     create () {
@@ -16,6 +17,7 @@ class storyScene extends Phaser.Scene {
         // this.add.text(0, 580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is storyScene");
+
 
         //this.input.once('pointerdown', function(){
         var spaceDown = this.input.keyboard.addKey('SPACE');

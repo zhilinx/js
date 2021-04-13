@@ -8,7 +8,6 @@ class story2Scene extends Phaser.Scene {
 
     preload() {
         this.load.image('story2','assets/howtoplay.png');
-
     }
 
     create () {

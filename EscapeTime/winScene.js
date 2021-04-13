@@ -7,7 +7,7 @@ class winScene extends Phaser.Scene {
 
     preload() {
         this.load.image('win','assets/winScene.png');
-        this.load.audio('win','assets/win.mp3');
+        this.load.audio('Win','assets/Win.mp3');
 
     }
 
@@ -19,9 +19,9 @@ class winScene extends Phaser.Scene {
 
         console.log("This is winScene");
 
-        this.bgmusicSnd = this.sound.add('win');
+        this.bgmusicSnd = this.sound.add('Win');
     
-        this.bgmusicSnd = this.sound.add('win', {volume: 0.5});
+        this.bgmusicSnd = this.sound.add('Win', {volume: 0.5});
         this.bgmusicSnd.play();
 
         //this.input.once('pointerdown', function(){

@@ -222,7 +222,7 @@ class level2 extends Phaser.Scene {
     hitPet(player,pet) {
         //bombs.disableBody(true, true);
         console.log('Hit pet, restart game');
-      this.hitSnd.play();
+        this.hitSnd.play();
         window.music1.stop();  
         
 
@@ -231,7 +231,7 @@ class level2 extends Phaser.Scene {
         this.time.delayedCall(1000,function() {
     
            this.scene.restart();
-           this.scene.start("gameoverScene");
+        //    this.scene.start("gameoverScene");
            
         },[], this);
     }

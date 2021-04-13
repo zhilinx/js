@@ -237,15 +237,16 @@ class level3 extends Phaser.Scene {
     hitPet(player,pet) {
         //bombs.disableBody(true, true);
         console.log('Hit pet, restart game');
+        this.hitSnd.play();
+           window.music1.stop();
 
         this.cameras.main.shake(100);
         // delay 1 sec
         this.time.delayedCall(1000,function() {
     
-            this.scene.restart();
+            // this.scene.restart();
            this.scene.start("gameoverScene");
-           this.hitSnd.play();
-           window.music1.stop();
+        
 
         },[], this);
     }
@@ -254,13 +255,16 @@ class level3 extends Phaser.Scene {
 hitNo(player,no) {
     //bombs.disableBody(true, true);
     console.log('Hit no, restart game');
+    this.hitSnd.play();
+           window.music1.stop();
+
     this.cameras.main.shake(100);
     // delay 1 sec
     this.time.delayedCall(1000,function() {
 
         this.scene.restart();
-       this.scene.start("gameoverScene");
-       this.hitSnd.play();
+    //    this.scene.start("gameoverScene");
+    
 
     },[], this);
 }

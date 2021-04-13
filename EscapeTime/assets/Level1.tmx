@@ -100,10 +100,10 @@
   </data>
  </layer>
  <objectgroup id="5" name="objectLayer">
-  <object id="3" name="startPoint" x="109.96" y="1220.96">
+  <object id="3" name="startPointX" x="109.96" y="1220.96">
    <point/>
   </object>
-  <object id="7" name="endPoint" x="2395.61" y="92.435">
+  <object id="7" name="endPointX" x="2395.61" y="92.435">
    <point/>
   </object>
  </objectgroup>

@@ -20,10 +20,10 @@ class gameoverScene extends Phaser.Scene {
 
         console.log("This is gameoverScene");
 
-        this.bgmusicSnd = this.sound.add('lose', {volume: 0.5});
+        this.bgmusicSnd2 = this.sound.add('lose', {volume: 0.5});
         
         
-        window.music1=this.bgmusicSnd;
+        window.music1=this.bgmusicSnd2;
         window.music1.play();
         window.music1.loop=false;
     

@@ -17,8 +17,6 @@ preload() {
     
     this.load.spritesheet('tiles', 'assets/TileMap1.png', {frameWidth: 64, frameHeight: 64});
 
-    this.load.spritesheet('objects', 'assets/goldCoin.png', {frameWidth: 64, frameHeight: 64});
-
     this.load.atlas('player', 'assets/Bella.png', 'assets/Bella.json');
 
     this.load.image('coin2', 'assets/Coin.png');
@@ -65,20 +63,20 @@ create() {
    
 
     // Set starting and ending position using object names in tiles
-    this.startPoint = map.findObject("objectLayer", obj => obj.name === "startPoint");
-    this.endPoint = map.findObject("objectLayer", obj => obj.name === "endPoint");
+    this.startPointX = map.findObject("objectLayer", obj => obj.name === "startPointX");
+    this.endPointX = map.findObject("objectLayer", obj => obj.name === "endPointX");
 
     // Place an image manually on the endPoint
-    this.add.image(this.endPoint.x, this.endPoint.y, 'exit2').setOrigin(0, 0);
+    this.add.image(this.endPointX.x, this.endPointX.y, 'exit2').setOrigin(0, 0);
 
-    console.log('startPoint ', this.startPoint.x, this.startPoint.y);
-    console.log('endPoint ', this.endPoint.x, this.endPoint.y);
+    console.log('startPointX', this.startPointX.x, this.startPointX.y);
+    console.log('endPoinXt', this.endPointX.x, this.endPointX.y);
 
     // Place an image manually on the endPoint
-    this.add.image(this.endPoint.x, this.endPoint.y, 'exit2').setOrigin(0, 0);
+    this.add.image(this.endPointX.x, this.endPointX.y, 'exit2').setOrigin(0, 0);
 
    // create the player sprite
-   this.player = this.physics.add.sprite(this.startPoint.x, this.startPoint.y, 'player').setScale(1);
+   this.player = this.physics.add.sprite(this.startPointX.x, this.startPointX.y, 'player').setScale(1);
 
    this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, this.backgroundLayer);
@@ -254,15 +252,9 @@ update() {
         //console.log('idle');
     }
   
-    // // Check for the vegeCount
-    // if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coinCount > 3 ) {
-    //     console.log('Collected 3 coin, jump to level 2');
-    //     this.scene.stop("level1");
-    //     this.scene.start("level2");
-    // }
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 2 ) {
+    if ( this.player.x >= this.endPointX.x && this.player.y >= this.endPointX.y) {
         console.log('Reached endPoint, loading next level');
         window.music1.stop();
         this.scene.stop("level1");

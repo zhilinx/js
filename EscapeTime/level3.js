@@ -16,7 +16,7 @@ class level3 extends Phaser.Scene {
         
         this.load.spritesheet('tiles', 'assets/TileMap1.png', {frameWidth: 64, frameHeight: 64});
         this.load.spritesheet('tiles2', 'assets/TileMap2.png', {frameWidth: 64, frameHeight: 64});
-
+   
     
         this.load.atlas('player', 'assets/Bella.png', 'assets/Bella.json');
     
@@ -233,41 +233,51 @@ class level3 extends Phaser.Scene {
     return false;
     }
     
-    // hitPet(player,pet) {
-    //     //bombs.disableBody(true, true);
-    //     console.log('Hit pet, restart game');
-    //     this.hitSnd.play();
-    //     window.music1.stop();  
+    hitPet(player,pet) {
+        //bombs.disableBody(true, true);
+        console.log('Hit pet, restart game');
+        this.bgmusicSnd.loop = false
+        this.bgmusicSnd.stop();
+        this.hitSnd.play();
+          
         
 
-    //     this.cameras.main.shake(50);
-    //     // delay 1 sec
-    //     this.time.delayedCall(100,function() {
+        this.cameras.main.shake(50);
+        // delay 1 sec
+        this.time.delayedCall(100,function() {
         
     
-    //     //    this.scene.restart();
-    //        this.scene.start("gameoverScene");
+        //    this.scene.restart();
+           this.scene.start("gameoverScene");
+           window.music1.stop();
+           this.coinCount=0;
+           return false;
            
-    //     },[], this);
-    // }
+        },[], this);
+    }
     
     
-// hitNo(player,no) {
-//     //bombs.disableBody(true, true);
-//     console.log('Hit no, restart game');
-//     this.hitSnd.play();
-//     window.music1.stop();
+hitNo(player,no) {
+    //bombs.disableBody(true, true);
+    console.log('Hit no, restart game');
+    this.bgmusicSnd.loop = false
+        this.bgmusicSnd.stop();
+    this.hitSnd.play();
+   
 
-//     this.cameras.main.shake(50);
-//     // delay 1 sec
-//     this.time.delayedCall(100,function() {
+    this.cameras.main.shake(50);
+    // delay 1 sec
+    this.time.delayedCall(100,function() {
 
-//         // this.scene.restart();
-//        this.scene.start("gameoverScene");
+        // this.scene.restart();
+       this.scene.start("gameoverScene");
+       window.music1.stop();
+       this.coinCount=0;
+           return false;
     
 
-//     },[], this);
-// }
+    },[], this);
+}
 
 moveBoss1() {
     var pos2=this.boss1.x
@@ -358,7 +368,7 @@ moveBoss2() {
         }
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y) {
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 7 ) {
         console.log('Reached endPoint, loading next level');
         window.music1.stop();
         this.scene.stop("level3");

@@ -19,13 +19,14 @@ class gameoverScene extends Phaser.Scene {
         // this.add.text(0,580, 'Press Spacebar to continue', { font: '24px Courier', fill: '#000000' });
 
         console.log("This is gameoverScene");
-
+         // music
+    
         this.bgmusicSnd2 = this.sound.add('lose', {volume: 0.5});
         
         
-        window.music1=this.bgmusicSnd2;
-        window.music1.play();
-        window.music1.loop=false;
+        window.music2=this.bgmusicSnd2;
+        window.music2.play();
+        window.music2.loop=false;
     
 
 
@@ -37,8 +38,9 @@ class gameoverScene extends Phaser.Scene {
         
         spaceDown.on('down', function(){
         console.log("Spacebar pressed, reply game");
-        window.music1.stop();
+        window.music2.stop();
         this.scene.stop("gameoverScene");
+        this.bgmusicSnd2.stop(); 
         this.scene.start("mainScene");
         }, this );
 

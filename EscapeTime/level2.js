@@ -27,11 +27,13 @@ class level2 extends Phaser.Scene {
         this.load.audio('collect','assets/collectmoney.mp3');
         this.load.audio('bgmusic','assets/bgm.mp3');
         this.load.audio('hit','assets/explosion.mp3');
+
+    
     
     }
     
     create() {
-    
+
         var map2 = this.make.tilemap({key: 'map2'});
         var Tiles = map2.addTilesetImage('TileMap1', 'tiles');
         var Tiles2 = map2.addTilesetImage('TileMap2', 'tiles2');
@@ -56,7 +58,7 @@ class level2 extends Phaser.Scene {
 
         window.music1=this.bgmusicSnd;
         window.music1.play();
-        window.music1.loop=true;
+        // window.music1.loop=true;
     
     
         // set the boundaries of our game world
@@ -203,7 +205,7 @@ class level2 extends Phaser.Scene {
       this.cameras.main.setBackgroundColor('#ccccff');
     
        //add text
-       this.add.text(30,550, 'Level 2 - 6 Coins (Do no hit the pets!)', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
+       this.add.text(30,550, 'Level 2 - 6 Coins (Do not hit the pets!)', { font: '30px Antonio', fill: 'white' }).setScrollFactor(0);
     
     }
     
@@ -221,8 +223,10 @@ class level2 extends Phaser.Scene {
     hitPet(player,pet) {
         //bombs.disableBody(true, true);
         console.log('Hit pet, restart game');
+        this.bgmusicSnd.loop = false
+        this.bgmusicSnd.stop();
         this.hitSnd.play();
-        window.music1.stop();  
+         
         
 
         this.cameras.main.shake(50);
@@ -232,6 +236,9 @@ class level2 extends Phaser.Scene {
     
         //    this.scene.restart();
            this.scene.start("gameoverScene");
+        //    window.music1.stop();
+           this.coinCount=0;
+           return false;
            
         },[], this);
     }
@@ -268,9 +275,10 @@ class level2 extends Phaser.Scene {
         }
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y) {
+    if ( this.player.x >= this.endPoint.x && this.player.y >= this.endPoint.y && this.coin > 5) {
         console.log('Reached endPoint, loading next level');
-        window.music1.stop();
+        this.bgmusicSnd.loop = false;
+        this.bgmusicSnd.stop(); 
         this.scene.stop("level2");
         this.scene.start("level3");
     }

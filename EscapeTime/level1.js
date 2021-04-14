@@ -17,6 +17,8 @@ preload() {
     
     this.load.spritesheet('tiles', 'assets/TileMap1.png', {frameWidth: 64, frameHeight: 64});
 
+
+
     this.load.atlas('player', 'assets/Bella.png', 'assets/Bella.json');
 
     this.load.image('coin2', 'assets/Coin.png');
@@ -252,9 +254,10 @@ update() {
         //console.log('idle');
     }
   
+ 
 
     // Check for reaching endPoint object
-    if ( this.player.x >= this.endPointX.x && this.player.y >= this.endPointX.y) {
+    if ( this.player.x >= this.endPointX.x && this.player.y >= this.endPointX.y && this.coin > 2 ) {
         console.log('Reached endPoint, loading next level');
         window.music1.stop();
         this.scene.stop("level1");
